@@ -8,7 +8,8 @@ class MycroftPlayground(MycroftSkill):
     @intent_file_handler('playground.mycroft.intent')
     def handle_playground_mycroft(self, message):
         self.speak_dialog('playground.mycroft')
-        self.speak_dialog("yay hardcode!")
+        self.speak_dialog("Do you have a question?")
+
 
     def initialize(self):
         # Connecting Message Handler
