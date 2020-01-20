@@ -14,12 +14,16 @@ class MycroftPlayground(MycroftSkill):
     def initialize(self):
         # Connecting Message Handler
         self.add_event("recognizer_loop:utterance", self.ensure_converse)
-        self.add_event("mycroft.skill.handler.complete", self.handle_output)
+        self.add_event("mycroft.skill.handler.complete", self.skill_interaction_response())
         # Wait for user input
         self.make_active()
 
-    def get_question(self, context):
-        pass
+    def skill_interaction_response(self,message):
+        question=self.get_question()
+        message += question
+        self.speak_dialog(message)
+    def get_question(self):
+        return "Do you know you lost private information?"
 
     def handle_record(self, message):
         pass
