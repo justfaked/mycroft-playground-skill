@@ -10,8 +10,20 @@ class MycroftPlayground(MycroftSkill):
         self.speak_dialog('playground.mycroft')
         self.speak_dialog("yay hardcode!")
 
+    def initialize(self):
+        # Connecting Message Handler
+        self.add_event("recognizer_loop:utterance", self.ensure_converse)
+        self.add_event("mycroft.skill.handler.complete", self.handle_output)
+        # Wait for user input
+        self.make_active()
+
+    def get_question(self, context):
+        pass
+
+    def handle_record(self, message):
+        pass
+
 
 
 def create_skill():
     return MycroftPlayground()
-
