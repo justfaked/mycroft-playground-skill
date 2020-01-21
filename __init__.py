@@ -7,7 +7,7 @@ class MycroftPlayground(MycroftSkill):
 
     @intent_file_handler('playground.mycroft.intent')
     def handle_playground_mycroft(self, message):
-        self.speak_dialog('playground.mycroft')
+        self.speak_dialog(self.magic)
         self.speak_dialog("Do you have a question?")
 
 
@@ -15,6 +15,7 @@ class MycroftPlayground(MycroftSkill):
         # Connecting Message Handler
         #self.add_event("recognizer_loop:utterance", self.ensure_converse)
         self.add_event("mycroft.skill.handler.complete", self.skill_interaction_response())
+        self.magic = "I am a little lady, you know?"
         # Wait for user input
         self.make_active()
 
