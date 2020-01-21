@@ -23,6 +23,7 @@ class MycroftPlayground(MycroftSkill):
         question=self.get_question()
         message += question
         self.speak_dialog(message)
+
     def get_question(self):
         return "Do you know you lost private information?"
 
