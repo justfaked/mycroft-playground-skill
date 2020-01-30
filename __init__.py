@@ -20,7 +20,6 @@ class MycroftPlayground(MycroftSkill):
 
     def skill_interaction_response(self,message):
         question=self.get_question()
-        message += question
         self.speak_dialog(message)
 
     def get_question(self):
