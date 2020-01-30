@@ -24,18 +24,23 @@ class MycroftPlayground(MycroftSkill):
         self.ensure_converse()
 
     def skill_interaction_response(self, message):
-        question = self.get_question()
+        question = self.get_question(1)
         # self.speak_dialog(question)
         answer = self.ask_yesno(question)
-        self.speak_dialog(str(message.data) + 'loss of info')
-        self.survey.append((self.user_input, question, answer))
-        self.speak_dialog(str(self.survey))
+        self.survey.append((self.user_input, question, answer, str(message.data)))
+        question = self.get_question(2)
+        answer = self.aks_yesno(question)
+        self.survey.append(((self.user_input, question, answer, str(message.data))))
+        # self.speak_dialog(str(self.survey))
+
         survey_copy = self.survey.copy()
         with open(os.path.join(self.root_dir, 'log_file_ours.json'), 'w') as f:
             json.dump(survey_copy, f, indent=4, sort_keys=True)
 
-    def get_question(self):
-        return "Do you know you lost private information?"
+    def get_question(self, number):
+        question = {1: "Do you know you lost private information?",
+                    2: "In your opinion which information got lost?"}
+        return question[number]
 
     def ensure_converse(self, message=None):
         self.make_active()
