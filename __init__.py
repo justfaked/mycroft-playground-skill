@@ -32,7 +32,10 @@ class MycroftPlayground(MycroftSkill):
     def ensure_converse(self, message = None):
         self.make_active()
 
-
+    def converse(self, utterances, lang="en-us"):
+        utterance = utterances[0]
+        self.speak_dialog(utterance)
+        self.ensure_converse()
 
 
 def create_skill():
