@@ -38,8 +38,8 @@ class MycroftPlayground(MycroftSkill):
         utterance = utterances[0]
         self.saving_user[self.helper_save]=utterance
 
-        self.speak_dialog(utterance)
-        print(json.dumps(self.saving_user))
+        self.speak_dialog(json.dumps(self.saving_user))
+        # print(json.dumps(self.saving_user))
         self.ensure_converse()
 
 
