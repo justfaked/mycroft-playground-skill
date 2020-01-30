@@ -1,6 +1,6 @@
 from mycroft import MycroftSkill, intent_file_handler
 import json
-
+import os
 class MycroftPlayground(MycroftSkill):
 
     def __init__(self):
@@ -37,8 +37,9 @@ class MycroftPlayground(MycroftSkill):
     def converse(self, utterances, lang="en-us"):
         utterance = utterances[0]
         self.saving_user[self.helper_save]=utterance
-
-        self.speak_dialog(json.dumps(self.saving_user))
+        self.speak_dialorg(utterance)
+        # self.speak_dialog(json.dumps(self.saving_user))
+        # self.speak_dialog(os.path.abspath())
         # print(json.dumps(self.saving_user))
         self.ensure_converse()
 
