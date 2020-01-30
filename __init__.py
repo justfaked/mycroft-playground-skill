@@ -30,8 +30,10 @@ class MycroftPlayground(MycroftSkill):
         self.survey.append((self.user_input, question, answer))
         self.speak_dialog(str(self.survey))
         self.speak_dialog(self.root_dir)
+        survey_copy = self.survey.copy()
         with open(os.path.join(self.root_dir,'log_file_ours.json'), 'w') as f:
-            json.dump(self.survey, f, indent=4, sort_keys=True)
+            json.dump(survey_copy, f, indent=4, sort_keys=True)
+
     def get_question(self):
         return "Do you know you lost private information?"
 
@@ -43,11 +45,6 @@ class MycroftPlayground(MycroftSkill):
 
     def converse(self, utterances, lang="en-us"):
         self.user_input = utterances[0]
-        self.saving_user[self.helper_save]=utterance
-        self.speak_dialog(utterance)
-        # self.speak_dialog(json.dumps(self.saving_user))
-        # self.speak_dialog(os.path.abspath())
-        # print(json.dumps(self.saving_user))
         self.ensure_converse()
         return False
 
