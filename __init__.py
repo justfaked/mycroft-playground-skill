@@ -1,17 +1,18 @@
-from mycroft import MycroftSkill, intent_file_handler
 import json
 import os
+from mycroft import MycroftSkill, intent_file_handler
+
+
 class MycroftPlayground(MycroftSkill):
 
     def __init__(self):
         MycroftSkill.__init__(self)
-        self.saving_user={}
-        self.helper_save=0
+        self.saving_user = {}
+        self.helper_save = 0
+
     @intent_file_handler('playground.mycroft.intent')
     def handle_playground_mycroft(self, message):
-        self.speak_dialog(self.magic)
         self.speak_dialog("Do you have a question?")
-
 
     def initialize(self):
         # Connecting Message Handler
@@ -22,25 +23,21 @@ class MycroftPlayground(MycroftSkill):
         self.filepath = None
         self.ensure_converse()
 
-    def skill_interaction_response(self,message):
-        question=self.get_question()
-        #self.speak_dialog(question)
+    def skill_interaction_response(self, message):
+        question = self.get_question()
+        # self.speak_dialog(question)
         answer = self.ask_yesno(question)
         self.speak_dialog(str(message.data) + 'loss of info')
         self.survey.append((self.user_input, question, answer))
         self.speak_dialog(str(self.survey))
-        self.speak_dialog(self.root_dir)
         survey_copy = self.survey.copy()
-        with open(os.path.join(self.root_dir,'log_file_ours.json'), 'w') as f:
+        with open(os.path.join(self.root_dir, 'log_file_ours.json'), 'w') as f:
             json.dump(survey_copy, f, indent=4, sort_keys=True)
 
     def get_question(self):
         return "Do you know you lost private information?"
 
-    def handle_record(self, message):
-        pass
-
-    def ensure_converse(self, message = None):
+    def ensure_converse(self, message=None):
         self.make_active()
 
     def converse(self, utterances, lang="en-us"):
