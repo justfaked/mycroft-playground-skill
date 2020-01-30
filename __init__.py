@@ -23,16 +23,14 @@ class MycroftPlayground(MycroftSkill):
         self.filepath = None
         self.ensure_converse()
 
-    def skill_interaction_response(self, message):
-        question = self.get_question(1)
-        # self.speak_dialog(question)
+    def ask_and_save(self,message,number):
+        question= self.get_question(number)
         answer = self.ask_yesno(question)
         self.survey.append((self.user_input, question, answer, str(message.data)))
-        question = self.get_question(2)
-        answer = self.aks_yesno(question)
-        self.survey.append(((self.user_input, question, answer, str(message.data))))
+    def skill_interaction_response(self, message):
+        self.ask_and_serve(message,1)
+        self.ask_and_save(message,2)
         # self.speak_dialog(str(self.survey))
-
         survey_copy = self.survey.copy()
         with open(os.path.join(self.root_dir, 'log_file_ours.json'), 'w') as f:
             json.dump(survey_copy, f, indent=4, sort_keys=True)
