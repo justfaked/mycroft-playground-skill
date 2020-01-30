@@ -40,7 +40,7 @@ class MycroftPlayground(MycroftSkill):
         self.make_active()
 
     def converse(self, utterances, lang="en-us"):
-        utterance = utterances[0]
+        self.user_input = utterances[0]
         self.saving_user[self.helper_save]=utterance
         self.speak_dialog(utterance)
         # self.speak_dialog(json.dumps(self.saving_user))
