@@ -29,7 +29,9 @@ class MycroftPlayground(MycroftSkill):
         self.speak_dialog(str(message.data) + 'loss of info')
         self.survey.append((self.user_input, question, answer))
         self.speak_dialog(str(self.survey))
-        self.speak_dialog(os.path.abspath())
+        self.speak_dialog(self.root_dir)
+        with open(os.path.join(self.root_dir,'log_file_ours.json'), 'w') as f:
+            json.dump(self.survey, f, indent=4, sort_keys=True)
     def get_question(self):
         return "Do you know you lost private information?"
 
