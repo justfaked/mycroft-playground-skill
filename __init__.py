@@ -17,7 +17,7 @@ class MycroftPlayground(MycroftSkill):
         self.add_event("mycroft.skill.handler.complete", self.skill_interaction_response())
         self.magic = "I am a little lady, you know?"
         # Wait for user input
-        self.make_active()
+        #self.make_active()
 
     def skill_interaction_response(self,message):
         question=self.get_question()
