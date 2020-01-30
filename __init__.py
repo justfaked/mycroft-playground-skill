@@ -17,13 +17,18 @@ class MycroftPlayground(MycroftSkill):
         # Connecting Message Handler
         self.add_event("recognizer_loop:utterance", self.ensure_converse)
         self.add_event("mycroft.skill.handler.complete", self.skill_interaction_response)
-        self.magic = "I am a little lady, you know?"
+        self.user_input = ""
+        self.survey = []
+        self.filepath = None
         self.ensure_converse()
 
     def skill_interaction_response(self,message):
-        # question=self.get_question()
-        # self.speak_dialog(question)
+        question=self.get_question()
+        #self.speak_dialog(question)
+        answer = self.ask_yesno(question)
         self.speak_dialog(str(message.data) + 'loss of info')
+        self.survey.append((self.user_input, question, answer))
+        self.speak_dialog(str(self.survey))
 
     def get_question(self):
         return "Do you know you lost private information?"
@@ -42,6 +47,7 @@ class MycroftPlayground(MycroftSkill):
         # self.speak_dialog(os.path.abspath())
         # print(json.dumps(self.saving_user))
         self.ensure_converse()
+        return False
 
 
 def create_skill():
