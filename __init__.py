@@ -1,10 +1,12 @@
 from mycroft import MycroftSkill, intent_file_handler
-
+import json
 
 class MycroftPlayground(MycroftSkill):
+
     def __init__(self):
         MycroftSkill.__init__(self)
-
+        self.saving_user={}
+        self.helper_save=0
     @intent_file_handler('playground.mycroft.intent')
     def handle_playground_mycroft(self, message):
         self.speak_dialog(self.magic)
@@ -34,7 +36,10 @@ class MycroftPlayground(MycroftSkill):
 
     def converse(self, utterances, lang="en-us"):
         utterance = utterances[0]
+        self.saving_user[self.helper_save]=utterance
+
         self.speak_dialog(utterance)
+        print(json.dumps(self.saving_user))
         self.ensure_converse()
 
 
