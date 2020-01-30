@@ -28,7 +28,7 @@ class MycroftPlayground(MycroftSkill):
         answer = self.ask_yesno(question)
         self.survey.append((self.user_input, question, answer, str(message.data)))
     def skill_interaction_response(self, message):
-        self.ask_and_serve(message,1)
+        self.ask_and_save(message,1)
         self.ask_and_save(message,2)
         # self.speak_dialog(str(self.survey))
         survey_copy = self.survey.copy()
