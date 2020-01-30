@@ -29,7 +29,7 @@ class MycroftPlayground(MycroftSkill):
         self.speak_dialog(str(message.data) + 'loss of info')
         self.survey.append((self.user_input, question, answer))
         self.speak_dialog(str(self.survey))
-
+        self.speak_dialog(os.path.abspath())
     def get_question(self):
         return "Do you know you lost private information?"
 
