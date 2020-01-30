@@ -10,7 +10,7 @@ class MycroftPlayground(MycroftSkill):
         self.speak_dialog(self.magic)
         self.speak_dialog("Do you have a question?")
         response = self.getresponse()
-        self.speal_dialog(response)
+        self.speak_dialog(response)
 
 
     def initialize(self):
