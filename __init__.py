@@ -21,7 +21,7 @@ class MycroftPlayground(MycroftSkill):
     def skill_interaction_response(self,message):
         # question=self.get_question()
         # self.speak_dialog(question)
-        self.speak_dialog(message.data['utterances'] + 'loss of info')
+        self.speak_dialog(str(message.data) + 'loss of info')
 
     def get_question(self):
         return "Do you know you lost private information?"
