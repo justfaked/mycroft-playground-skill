@@ -14,7 +14,7 @@ class MycroftPlayground(MycroftSkill):
     def initialize(self):
         # Connecting Message Handler
         #self.add_event("recognizer_loop:utterance", self.ensure_converse)
-        self.add_event("mycroft.skill.handler.complete", self.skill_interaction_response())
+        #self.add_event("mycroft.skill.handler.complete", self.skill_interaction_response())
         self.magic = "I am a little lady, you know?"
         # Wait for user input
         #self.make_active()
