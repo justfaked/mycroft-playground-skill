@@ -9,17 +9,14 @@ class MycroftPlayground(MycroftSkill):
     def handle_playground_mycroft(self, message):
         self.speak_dialog(self.magic)
         self.speak_dialog("Do you have a question?")
-        response = self.getresponse()
-        self.speak_dialog(response)
 
 
     def initialize(self):
         # Connecting Message Handler
-        #self.add_event("recognizer_loop:utterance", self.ensure_converse)
-        #self.add_event("mycroft.skill.handler.complete", self.skill_interaction_response())
+        self.add_event("recognizer_loop:utterance", self.ensure_converse)
+        self.add_event("mycroft.skill.handler.complete", self.skill_interaction_response)
         self.magic = "I am a little lady, you know?"
-        # Wait for user input
-        #self.make_active()
+        self.ensure_converse()
 
     def skill_interaction_response(self,message):
         question=self.get_question()
@@ -31,6 +28,10 @@ class MycroftPlayground(MycroftSkill):
 
     def handle_record(self, message):
         pass
+
+    def ensure_converse(self, message = None):
+        self.make_active()
+
 
 
 
